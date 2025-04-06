@@ -1,9 +1,9 @@
 import os
-from streamlit.web import cli as stcli
 import sys
+from streamlit.web import cli as stcli
 
 if __name__ == '__main__':
-    # Adjust the path for assessments_with_embeddings.pkl if needed
-    os.environ["STREAMLIT_SERVER_PORT"] = "3000"
-    sys.argv = ["streamlit", "run", "app.py", "--server.port=3000"]
+    # Use Render's PORT env var, default to 8501 locally
+    port = os.getenv("PORT", "8501")
+    sys.argv = ["streamlit", "run", "app.py", "--server.port", port]
     sys.exit(stcli.main())
